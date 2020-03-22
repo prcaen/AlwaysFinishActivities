@@ -1,0 +1,36 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  package="fr.prcaen.alwaysfinishactivities">
+
+  <uses-permission
+    android:name="android.permission.WRITE_SECURE_SETTINGS"
+    tools:ignore="ProtectedPermissions" />
+  <uses-permission
+    android:name="android.permission.SET_ALWAYS_FINISH"
+    tools:ignore="ProtectedPermissions" />
+
+  <application
+    android:allowBackup="false"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="false"
+    tools:ignore="GoogleAppIndexingWarning">
+
+    <service
+      android:name=".AlwaysFinishActivitiesTileService"
+      android:enabled="true"
+      android:exported="true"
+      android:icon="@drawable/ic_tile_icon_black_24dp"
+      android:label="@string/tile_name"
+      android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+
+      <intent-filter>
+        <action android:name="android.service.quicksettings.action.QS_TILE" />
+      </intent-filter>
+
+    </service>
+
+  </application>
+
+</manifest>

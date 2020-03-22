@@ -1,0 +1,54 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+
+android {
+  compileSdkVersion buildConfig.compileSdkVersion
+
+  defaultConfig {
+    applicationId "fr.prcaen.alwaysfinishactivities"
+    minSdkVersion buildConfig.minSdkVersion
+    targetSdkVersion buildConfig.targetSdkVersion
+    versionCode versions.code
+    versionName versions.name
+
+    vectorDrawables.useSupportLibrary true
+  }
+  buildTypes {
+    debug {
+      testCoverageEnabled true
+    }
+
+    release {
+      proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+    }
+  }
+
+  lintOptions {
+    textReport true
+    textOutput "stdout"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
+
+  sourceSets {
+    main.java.srcDirs += "src/main/kotlin"
+    test.java.srcDirs += "src/test/kotlin"
+  }
+
+  testOptions {
+    unitTests.returnDefaultValues = true
+  }
+}
+
+dependencies {
+  implementation deps.kotlinStdlib
+  implementation deps.androidX.annotation
+}

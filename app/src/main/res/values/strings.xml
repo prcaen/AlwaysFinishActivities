@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">Quick setting: Don\'t keep activities</string>
+  <string name="tile_name">Don\'t keep activities</string>
+  <string name="permissions_required">Permissions not granted. Run grant_permissions.sh first.</string>
+</resources>
