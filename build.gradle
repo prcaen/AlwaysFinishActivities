@@ -18,6 +18,23 @@ buildscript {
       ]
   ]
 
+  ext.signingConfigurations = [
+      debug: [
+          file: "keystore/debug.keystore",
+          password: "android",
+          keyAlias: "androiddebugkey",
+          keyPassword: "android"
+      ],
+      release: [
+          file: 'keystore/release.keystore',
+          password: project.hasProperty('always_finish_activities_keystore_password') ?
+              project.getProperties().get('always_finish_activities_keystore_password') : '',
+          keyAlias: "release",
+          keyPassword: project.hasProperty('always_finish_activities_key_password') ?
+              project.getProperties().get('always_finish_activities_key_password') : ''
+      ]
+  ]
+
   repositories {
     google()
     jcenter()

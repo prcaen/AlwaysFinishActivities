@@ -5,6 +5,20 @@ apply plugin: "kotlin-android-extensions"
 android {
   compileSdkVersion buildConfig.compileSdkVersion
 
+  signingConfigs {
+    debug {
+      storeFile file(signingConfigurations.debug.file)
+      keyAlias signingConfigurations.debug.keyAlias
+    }
+    release {
+      storeFile file(signingConfigurations.release.file)
+      storePassword signingConfigurations.release.password
+      keyAlias signingConfigurations.release.keyAlias
+      keyPassword signingConfigurations.release.keyPassword
+      v2SigningEnabled true
+    }
+  }
+
   defaultConfig {
     applicationId "fr.prcaen.alwaysfinishactivities"
     minSdkVersion buildConfig.minSdkVersion
@@ -17,10 +31,12 @@ android {
   buildTypes {
     debug {
       testCoverageEnabled true
+      signingConfig signingConfigs.debug
     }
 
     release {
       proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+      signingConfig signingConfigs.release
     }
   }
 
